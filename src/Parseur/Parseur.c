@@ -33,10 +33,13 @@ static inline int	is_numeric(const char *const restrict str)
 	return (1);
 }
 
-static void	print_error_and_exit(void)
+t_config	print_error_and_exit(void)
 {
+	t_config	config;
+
 	write(1, "Invalid input : <number_of_collones> <number_of_lines> [interface]\n", 67);
-	exit(1);
+	config.error = 1;
+	return (config);
 }
 
 t_config	check_args(int argc, char **argv)
