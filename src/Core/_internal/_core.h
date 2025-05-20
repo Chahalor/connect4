@@ -17,7 +17,7 @@
 # include "Core.h"
 
 /* -----| Modules  |----- */
-# include "Parseur.h"
+# include "Parser.h"
 
 /* ************************************************************************** */
 /*                                 Typedefs                                   */
