@@ -70,8 +70,8 @@ __attribute__((cold, unused)) t_Core	*Core_init(
 				.add_pawn = _add_pawn,
 				.get_grid = _get_grid,
 				.destroy = _destroy,
-				.height = args->columns,
-				.width = args->rows,
+				.width = args->columns,
+				.height = args->rows,
 			};
 		return (Core);
 	}
