@@ -136,7 +136,7 @@ OBJ_ALL		:=$OBJ_ALL_LIST
 
 .PHONY: all
 
-all: header norm \$(NAME) install
+all: \$(NAME) install
 
 # ***************************************************** #
 # *                  Compiling                        * #
