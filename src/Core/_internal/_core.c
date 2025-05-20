@@ -62,7 +62,7 @@ __attribute__((always_inline, used)) static inline int	_Destroy(
 }
 
 /** */
-__attribute__((always_inline, used)) static inline int	count_in_direction(
+__attribute__((always_inline, used)) static inline int	count_direction(
 	const _t_Core *const restrict _Core,
 	t_point point,
 	const int dx,
@@ -87,7 +87,7 @@ __attribute__((always_inline, used)) static inline int	count_in_direction(
 }
 
 /** */
-__attribute__((always_inline, used)) static inline int	is_winning_move(
+__attribute__((always_inline, used)) static inline int	_is_win(
 	const int x,
 	const int y,
 	const _t_Core *_Core

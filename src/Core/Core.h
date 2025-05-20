@@ -13,7 +13,7 @@
 	//...
 
 /* -----| Global   |----- */
-# include "global.h"
+# include "config.h"
 
 /* -----| Internal |----- */
 	//...

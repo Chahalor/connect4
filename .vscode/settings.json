@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"parseur.h": "c"
+		"parseur.h": "c",
+		"_ai.h": "c"
 	}
 }

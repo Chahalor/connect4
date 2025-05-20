@@ -1,14 +1,12 @@
-// Big HEader
+// Big Header
 
-#ifndef GLOBAL_H
-# define GLOBAL_H
+#ifndef CONFIG_H
+# define CONFIG_H
 
 # pragma once
 
-# include <stdio.h> //rm
-
 /* ************************************************************************** */
-/*                                 Global                                     */
+/*                                 Config                                     */
 /* ************************************************************************** */
 
 # define PLAYER_PAWN		'X'
@@ -18,4 +16,8 @@
 # define _unlikely(cond)	__builtin_expect(!!cond, 0)	/* This condition is not expected to be true */
 # define _likely(cond)		__builtin_expect(!!cond, 1)	/* This condition is expected to be True    */
 
-#endif /* GLOBAL_H */
+# ifndef DEBUG
+#  define DEBUG	0	/* 0: debug disable, 1: debug enable */
+# endif // DEBUG
+
+#endif // CONFIG_H
