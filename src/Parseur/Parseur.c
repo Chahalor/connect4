@@ -1,11 +1,11 @@
 #include "Parseur.h"
 
-int	ft_isdigit(int c)
+static int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-int	ft_atoi(char *str)
+static int	ft_atoi(char *str)
 {
 	int i = 0;
 	int res = 0;
@@ -18,7 +18,7 @@ int	ft_atoi(char *str)
 	return (res);
 }
 
-int	is_numeric(char *str)
+static int	is_numeric(char *str)
 {
 	int i = 0;
 
@@ -33,7 +33,7 @@ int	is_numeric(char *str)
 	return (1);
 }
 
-void	print_error_and_exit(void)
+static void	print_error_and_exit(void)
 {
 	write(1, "Invalid input : <number_of_collones> <number_of_lines> [interface]\n", 68);
 	exit(1);
