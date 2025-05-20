@@ -7,7 +7,7 @@
 
 /* -----| Modules   |----- */
 #include "Core.h"
-#include "Parseur.h"
+#include "Parser.h"
 #include "AI.h"
 #include "Interface.h"
 
