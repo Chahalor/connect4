@@ -64,7 +64,10 @@ __attribute__((cold)) t_AI	*AI_create(
 		.play = _Play,
 		.destroy = _AI_Destroy,
 	};
-	return (ai);
+	if (_unlikely(_AI(ai_req_init, &(t_point){.x = width, .y = height}) < 0))
+		return (free(ai), NULL);
+	else
+		return (ai);
 }
 
 #pragma region Functions

@@ -3,7 +3,7 @@ DIR_INTERFACE_AI	:= $(DIR_MODULE_AI)
 DIR_INTERNAL_AI	:= $(DIR_MODULE_AI)/_internal
 
 SRC_INTERFACE_AI	:= AI.c 
-SRC_INTERNAL_AI	:= _ai.c 
+SRC_INTERNAL_AI	:= _ai.c _evaluate.c 
 
 OBJ_AI			:= $(addprefix $(DIR_OBJ)/$(DIR_INTERFACE_AI)/, $(SRC_INTERFACE_AI:.c=.o))
 OBJ_AI			+= $(addprefix $(DIR_OBJ)/$(DIR_INTERNAL_AI)/, $(SRC_INTERNAL_AI:.c=.o))

@@ -35,7 +35,7 @@ __attribute__((always_inline, used)) inline int	_evaluate(
 		j = -1;
 		while (++j < _ai->width)
 		{
-			// the cost calculation
+			return (_ai->grid[i][j]);
 		}
 	}
 	return (0);

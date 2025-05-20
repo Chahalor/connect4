@@ -18,8 +18,8 @@ __attribute__((always_inline, used)) static inline _t_ai	*_init(
 )
 {
 	_t_ai			*ai = NULL;
-	register int	i = -1;
-	register int	j = -1;
+	register t_uint	i = -1;
+	register t_uint	j = -1;
 
 	if (_unlikely(!width || !height))
 		return (NULL);
@@ -76,13 +76,15 @@ __attribute__((visibility("hidden"), used)) int	_AI(
 		case ai_req_evaluate:
 			return (_evaluate(_ai));
 		case ai_req_play:
-			return (_Play(_ai));
+			return (_play(_ai));
 		case ai_req_destroy:
 			return (_destroy(&_ai));
 		case ai_req_init:
-			const t_point	*point = (t_point *)data;
-			_ai = _init(point->x, point->y);
+		{
+			const t_point	point = *(t_point *)data;
+			_ai = _init(point.x, point.y);
 			return (_ai ? 0 : -1);
+		}
 		default:
 			return (-1);
 	}

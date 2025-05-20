@@ -102,8 +102,8 @@ __attribute__((always_inline, used)) static inline int	_is_win(
 		int	dx = directions[i][0];
 		int	dy = directions[i][1];
 		int	count = 1;
-		count += count_in_direction(_Core, (t_point){x + dx, y + dy}, dx, dy, pawn);
-		count += count_in_direction(_Core, (t_point){x - dx, y - dy}, -dx, -dy, pawn);
+		count += count_direction(_Core, (t_point){x + dx, y + dy}, dx, dy, pawn);
+		count += count_direction(_Core, (t_point){x - dx, y - dy}, -dx, -dy, pawn);
 		if (count > 3)
 			return (1);
 	}
@@ -132,7 +132,7 @@ __attribute__((always_inline, used)) static inline int	_core_add_pown(
 		if (x == Core->height)
 			return (-2);
 		Core->grid[x][col] = Core->turn ? AI_PAWN : PLAYER_PAWN;
-		if (is_winning_move(col, x, Core))
+		if (_is_win(col, x, Core))
 			return (Core->turn ? core_ord_win_AI : core_ord_win_player);
 		Core->turn = !Core->turn;
 		--Core->nb_case_left;

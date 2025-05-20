@@ -38,7 +38,7 @@ typedef enum e_Core_order	t_Core_order;	/* All Order from the _Core */
 /* -----| Structs  |----- */
 
 typedef struct s_Core		t_Core;			/* The Core struct interface */
-typedef struct t_point	t_point;			/**/
+typedef struct s_point		t_point;		/**/
 
 /* ************************************************************************** */
 /*                                 Enums                                      */
@@ -69,7 +69,7 @@ struct s_Core
 	t_uint	height;							/* The Grid heigth          */
 };
 
-struct t_point
+struct s_point
 {
 	t_uint	x;	/* x coordinate */
 	t_uint	y;	/* y coordinate */
