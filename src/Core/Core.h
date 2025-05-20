@@ -62,17 +62,17 @@ enum e_Core_order
 
 struct s_Core
 {
-	int	(*add_pawn)(const t_uint cols);
-	int	(*get_grid)(char ***grid);
-	int	(*destroy)(t_Core **core);
-	int	width;			// the width of the grid
-	int	height;			// the height of the grid
+	int		(*add_pawn)(const t_uint cols);	/**/
+	int		(*get_grid)(char ***grid);		/**/
+	int		(*destroy)(t_Core **core);		/**/
+	t_uint	width;							// the width of the grid
+	t_uint	height;							// the height of the grid
 };
 
 struct t_point
 {
-	int	x;	// x coordinate
-	int	y;	// y coordinate
+	t_uint	x;	// x coordinate
+	t_uint	y;	// y coordinate
 };
 
 
