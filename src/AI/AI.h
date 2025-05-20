@@ -14,7 +14,7 @@
 # include <stdlib.h>
 
 /* -----| Internal |----- */
-# include "_ai.h"
+# include "_internal/_ai.h"
 
 /* -----| Modules  |----- */
 # include "Core.h"
