@@ -35,7 +35,7 @@ static inline int	is_numeric(const char *const restrict str)
 
 static void	print_error_and_exit(void)
 {
-	write(1, "Invalid input : <number_of_collones> <number_of_lines> [interface]\n", 68);
+	write(1, "Invalid input : <number_of_collones> <number_of_lines> [interface]\n", 67);
 	exit(1);
 }
 
