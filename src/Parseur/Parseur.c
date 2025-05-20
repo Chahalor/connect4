@@ -39,19 +39,28 @@ void	print_error_and_exit(void)
 	exit(1);
 }
 
-void	check_args(int argc, char **argv)
+t_config	check_args(int argc, char **argv)
 {
+	t_config	config;
+	int	cols;
+	int	rows;
+
 	if (argc != 3 && argc != 4)
 		print_error_and_exit();
 	if (!is_numeric(argv[1]) || !is_numeric(argv[2]))
 		print_error_and_exit();
-	int cols = ft_atoi(argv[1]);
-	int rows = ft_atoi(argv[2]);
-	if (cols < 4 || rows < 4)
+	cols = ft_atoi(argv[1]);
+	rows = ft_atoi(argv[2]);
+	if (cols < 6 || rows < 7)
 		print_error_and_exit();
+	config.columns = cols;
+	config.rows = rows;
+	config.interface_enabled = 0;
 	if (argc == 4)
 	{
 		if (!(argv[3][0] == '0' || argv[3][0] == '1') || argv[3][1] != '\0')
 			print_error_and_exit();
+		config.interface_enabled = (argv[3][0] == '1');
 	}
+	return (config);
 }
