@@ -1,14 +1,14 @@
 #include "Parseur.h"
 
-static int	ft_isdigit(int c)
+static inline int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-static int	ft_atoi(char *str)
+static inline int	ft_atoi(char *str)
 {
-	int i = 0;
-	int res = 0;
+	register int i = 0;
+	register int res = 0;
 
 	while (str[i])
 	{
@@ -18,7 +18,7 @@ static int	ft_atoi(char *str)
 	return (res);
 }
 
-static int	is_numeric(char *str)
+static inline int	is_numeric(const char *const restrict str)
 {
 	int i = 0;
 

@@ -1,6 +1,16 @@
-# include "Core.h"
-#include "Parseur.h"
+// Big Header
+
+#pragma region Header
+
+/* -----| Systems   |----- */
 #include <stdio.h>
+
+/* -----| Modules   |----- */
+#include "Core.h"
+#include "Parseur.h"
+
+#pragma endregion Header
+#pragma region Fonctions
 
 int	main(int argc, char const *argv[])
 {
@@ -13,7 +23,7 @@ int	main(int argc, char const *argv[])
 		return (-1);
 	}
 
-	
+
 
 	core->destroy(&core);
 	return 0;

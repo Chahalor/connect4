@@ -28,11 +28,11 @@
 
 /* -----| Enums   |----- */
 
-typedef enum e_Core_request	t_Core_request;	/* */
+typedef enum e_Core_request	t_Core_request;	/* All request to the Internal Core */
 
 /* -----| Structs |----- */
 
-typedef struct _s_Core		_t_Core;		/**/
+typedef struct _s_Core		_t_Core;		/* The Internal Core struct */
 
 /* ************************************************************************** */
 /*                                 Enums                                      */
