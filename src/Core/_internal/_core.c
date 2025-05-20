@@ -74,7 +74,7 @@ __attribute__((always_inline, used)) static inline int	count_in_direction(
 
 	while (
 		   point.x >= 0
-		&& point.x < _Core->height
+		&& point.x < _Core->width
 		&& point.y >= 0
 		&& point.y < _Core->height
 		&& _Core->grid[point.y][point.x] == pawn)
@@ -95,9 +95,9 @@ __attribute__((always_inline, used)) static inline int	is_winning_move(
 {
 	static const int	directions[4][2] = {{1, 0}, {0, 1}, {1, 1}, {1, -1}};
 	const char			pawn = _Core->grid[y][x];
-	register int		i = 0;
+	register int		i = -1;
 
-	while (i < 4)
+	while (++i < 4)
 	{
 		int	dx = directions[i][0];
 		int	dy = directions[i][1];

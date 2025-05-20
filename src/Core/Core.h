@@ -27,17 +27,17 @@
 
 /* -----| Types   |----- */
 
-typedef unsigned int	t_uint;				/**/
-typedef unsigned char	t_uchar;			/**/
-typedef t_config		t_args;				/**/
+typedef unsigned int	t_uint;				/* Unsigned int   */
+typedef unsigned char	t_uchar;			/* Unsigned char */
+typedef t_config		t_args;				/* tkt          */
 
 /* -----| Enums    |----- */
 
-typedef enum e_Core_order	t_Core_order;	/* */
+typedef enum e_Core_order	t_Core_order;	/* All Order from the _Core */
 
 /* -----| Structs  |----- */
 
-typedef struct s_Core		t_Core;			/**/
+typedef struct s_Core		t_Core;			/* The Core struct interface */
 typedef struct t_point	t_point;			/**/
 
 /* ************************************************************************** */
@@ -62,17 +62,17 @@ enum e_Core_order
 
 struct s_Core
 {
-	int		(*add_pawn)(const t_uint cols);	/**/
-	int		(*get_grid)(char ***grid);		/**/
-	int		(*destroy)(t_Core **core);		/**/
-	t_uint	width;							// the width of the grid
-	t_uint	height;							// the height of the grid
+	int		(*add_pawn)(const t_uint cols);	/* Add a apwn to the cols colon */
+	int		(*get_grid)(char ***grid);		/* Request the grid            */
+	int		(*destroy)(t_Core **core);		/* The Core destroyer         */
+	t_uint	width;							/* The grid width            */
+	t_uint	height;							/* The Grid heigth          */
 };
 
 struct t_point
 {
-	t_uint	x;	// x coordinate
-	t_uint	y;	// y coordinate
+	t_uint	x;	/* x coordinate */
+	t_uint	y;	/* y coordinate */
 };
 
 
