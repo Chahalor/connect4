@@ -27,11 +27,9 @@
 	//...
 
 /* -----| Enums   |----- */
-
 typedef enum e_Core_request	t_Core_request;	/* All request to the Internal Core */
 
 /* -----| Structs |----- */
-
 typedef struct _s_Core		_t_Core;		/* The Internal Core struct */
 
 /* ************************************************************************** */
@@ -57,8 +55,8 @@ struct _s_Core
 	t_uint	width;			// the width of the grid
 	t_uint	height;			// the height of the grid
 	t_uint	nb_case_left;	// number of empty cases left
-	char	turn	: 1;	// 0 = player, 1 = AI
-	char	display	: 1;	// 0 = no display, 1 = display
+	t_uchar	turn	: 1;	// 0 = player, 1 = AI
+	t_uchar	display	: 1;	// 0 = no display, 1 = display
 };
 
 /* ************************************************************************** */

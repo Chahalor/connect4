@@ -28,6 +28,7 @@
 /* -----| Types   |----- */
 
 typedef unsigned int	t_uint;				/**/
+typedef unsigned char	t_uchar;			/**/
 typedef t_config		t_args;				/**/
 
 /* -----| Enums    |----- */
