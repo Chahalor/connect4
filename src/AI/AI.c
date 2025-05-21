@@ -7,7 +7,7 @@
 
 /* -----| Modules   |----- */
 #include "Utils.h"
-# include <stdio.h>
+#include "ft_printf.h"
 
 #pragma endregion Header
 #pragma region Fonctions
@@ -27,12 +27,20 @@ __attribute__((visibility("hidden"), used)) int	_Evaluate(void)
 __attribute__((visibility("hidden"), used)) int	_Play(void)
 {
 	t_uint pos = 0;
+	int		ord = 0;
+
 	if (_unlikely(!AI || !CORE))
 		return (-1);
-	pos = randint(0, CORE->width - 1);	
-	while (CORE->add_pawn(pos) == core_ord_wrong_place)
+	AI->evaluate();
+	pos = _AI(ai_req_play, NULL);
+	ord = CORE->add_pawn(pos);
+	while (ord == core_ord_wrong_place)
+	{
 		pos = randint(0, CORE->width - 1);
-	return (0);
+		ord = CORE->add_pawn(pos);
+	}
+	ft_printf(">> AI played at the column number %d\n", pos);
+	return (ord);
 }
 
 /** */

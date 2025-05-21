@@ -9,6 +9,7 @@
 #include "get_next_line.h"
 #include "Utils.h"
 #include "formating.h"
+#include "AI.h"
 
 # include <stdio.h>
 
@@ -16,6 +17,72 @@
 #pragma region Fonctions
 
 extern t_Core	*CORE;
+extern t_AI		*AI;
+
+/** */
+__attribute__((always_inline, used)) static inline int end_game(
+	const int order,
+	char **grid
+)
+{
+	display_grid(grid, CORE->height, CORE->width);
+	switch (order)
+	{
+		case core_ord_draw:
+			write(1, "Game is a draw\n", 15);
+			break;
+		case core_ord_win_player:
+			write(1, GREEN, 5);
+			write(1, "Player wins\n", 12);
+			write(1, RESET, 4);
+			break;
+		case core_ord_win_AI:
+			write(1, RED, 5);
+			write(1, "AI wins\n", 8);
+			write(1, RESET, 4);
+			break;
+		case core_ord_stop:
+			write(1, "Game stopped\n", 13);
+			break;
+		default:
+			break;
+	}
+	return (0);
+}
+
+/** */
+__attribute__((always_inline, used)) static inline int	player_turn(void)
+{
+	char	*line = NULL;
+	int		col = 0;
+	int		order = 0;
+
+	write(1, "\n>> ", 4);
+	line = get_next_line(0);
+	if (_unlikely(!line))
+		return (-1);
+	else
+	{
+		col = ft_atoi(line);
+		free(line);
+		order = CORE->add_pawn(col);
+		while (order == core_ord_wrong_place)
+		{
+			write(1, "Wrong place, try again\n", 23);
+			write(1, "\n>> ", 4);
+			line = get_next_line(0);
+			if (_unlikely(!line))
+				return (-1);
+			else
+			{
+				col = ft_atoi(line);
+				free(line);
+				order = CORE->add_pawn(col);
+			}
+		}
+		return (order);
+	}
+}
 
 /** */
 __attribute__((used)) int display_game(
@@ -23,34 +90,26 @@ __attribute__((used)) int display_game(
 )
 {
 	char	**grid = NULL;
-	int		core_order = 0;
-	char	*line = NULL;
+	int		order = 0;
 
 	if (_unlikely(!Core))
 		return (-1);
 
-	while (
-		(core_order != core_ord_draw) &&
-		(core_order != core_ord_win_player) &&
-		(core_order != core_ord_win_AI) &&
-		(core_order != core_ord_stop))
+	Core->get_grid(&grid);
+	while (order < core_ord_start)
 	{
-		write(1, "Game in progress\n", 17);
-		Core->get_grid(&grid);
-		display_grid(grid, Core->height, Core->width);
-		write(1, "\n>> ", 4);
-		line = get_next_line(0);
-		if (_unlikely(!line))
-			return (-1);
-		else
+		order = Core->next_turn();
+		switch (order)
 		{
-			const int col = ft_atoi(line);
-			core_order = Core->add_pawn(col);
+			case core_ord_player:
+				display_grid(grid, Core->height, Core->width);
+				order = player_turn();
+				break;
+			default:
+				continue ;
 		}
-		free(line);
-		CORE->next_turn();
 	}
-	return (0);
+	return (end_game(order, grid));
 }
 
 /** */
