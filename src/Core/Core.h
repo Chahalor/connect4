@@ -26,23 +26,21 @@
 /* ************************************************************************** */
 
 /* -----| Types   |----- */
-
 typedef unsigned int	t_uint;				/* Unsigned int   */
 typedef unsigned char	t_uchar;			/* Unsigned char */
 typedef t_config		t_args;				/* tkt          */
 
 /* -----| Enums    |----- */
-
 typedef enum e_Core_order	t_Core_order;	/* All Order from the _Core */
 
 /* -----| Structs  |----- */
-
 typedef struct s_Core		t_Core;			/* The Core struct interface */
-typedef struct s_point		t_point;		/**/
+typedef struct s_point		t_point;		/* The point struct         */
 
 /* ************************************************************************** */
 /*                                 Enums                                      */
 /* ************************************************************************** */
+
 enum e_Core_order
 {
 	core_ord_player,		/* This is the Turn of the player            */
@@ -75,7 +73,6 @@ struct s_point
 	t_uint	x;	/* x coordinate */
 	t_uint	y;	/* y coordinate */
 };
-
 
 /* ************************************************************************** */
 /*                                 Prototypes                                 */

@@ -1,12 +1,22 @@
 #include "Parser.h"
 
-static inline t_config	print_usage(void)
+/**
+ * @brief	Print the usage of the program.
+ */
+__attribute__((always_inline, used)) static inline t_config	print_usage(void)
 {
 	ft_fprintf(2, BLUE USAGE RESET "./connect4 <columns> <rows> [interface]\n");
 	return ((t_config){.error = 1});
 }
 
-static inline t_config err_invalide_str(
+/**
+ * @brief	Error handling for invalid string.
+ * 
+ * @param str	The string to check.
+ * 
+ * @return t_config	The configuration with error set.
+ */
+__attribute__((always_inline, used)) static inline t_config err_invalide_str(
 	const char *const restrict str
 )
 {
@@ -14,7 +24,15 @@ static inline t_config err_invalide_str(
 	return ((t_config){.error = 1});
 }
 
-static inline t_config err_invalide_size(
+/**
+ * @brief	Error handling for invalid size.
+ * 
+ * @param str	The string to check.
+ * @param min	The minimum value.
+ * 
+ * @return t_config	The configuration with error set.
+ */
+__attribute__((always_inline, used)) static inline t_config err_invalide_size(
 	const char *const restrict str,
 	const int min
 )
@@ -23,7 +41,18 @@ static inline t_config err_invalide_size(
 	return ((t_config){.error = 1});
 }
 
-t_config	check_args(int argc, char **argv)
+/**
+ * @brief	Check the arguments passed to the program.
+ * 
+ * @param argc	The number of arguments passed to the program.
+ * @param argv	The arguments passed to the program.
+ * 
+ * @return t_config	The configuration of the program.
+ */
+__attribute__((cold, unused)) t_config	check_args(
+	int argc,
+	char **argv
+)
 {
 	t_config	config;
 	int	cols;

@@ -14,7 +14,14 @@
 #pragma endregion Header
 #pragma region Fonctions
 
-/** */
+/**
+ * @brief	Generate a random integer between min and max.
+ * 
+ * @param min	The minimum value.
+ * @param max	The maximum value.
+ * 
+ * @return int	The random integer.
+*/
 __attribute__((always_inline, used)) inline int	randint(
 	const int min,
 	const int max
@@ -23,6 +30,13 @@ __attribute__((always_inline, used)) inline int	randint(
 	return (rand() % (max - min + 1) + min);
 }
 
+/**
+ * @brief	Convert a string to an integer.
+ * 
+ * @param str	The string to convert.
+ * 
+ * @return int	The converted integer.
+*/
 __attribute__((always_inline, used)) inline int	ft_atoi(
 	const char *const restrict str
 )
@@ -40,12 +54,28 @@ __attribute__((always_inline, used)) inline int	ft_atoi(
 	return (res);
 }
 
-static inline int	ft_isdigit(int c)
+/**
+ * @brief	Check if a string is numeric.
+ * 
+ * @param str	The string to check.
+ * 
+ * @return int	1 if the string is numeric, 0 otherwise.
+*/
+__attribute__((always_inline, used)) static inline int	ft_isdigit(
+	const int c
+)
 {
 	return ((c >= '0' && c <= '9'));
 }
 
-inline int	is_numeric(
+/**
+ * @brief	Check if a string is numeric.
+ * 
+ * @param str	The string to check.
+ * 
+ * @return int	1 if the string is numeric, 0 otherwise.
+*/
+__attribute__((always_inline, used)) inline int	is_numeric(
 	const char *const restrict str
 )
 {
@@ -62,6 +92,14 @@ inline int	is_numeric(
 	return (1);
 }
 
+/**
+ * @brief	Neutralize a memory area.
+ * 
+ * @param area	The memory area to neutralize.
+ * @param size	The size of the memory area.
+ * 
+ * @return void
+ */
 __attribute__((always_inline, used))
 //	(-hidden-)
 extern inline void	_neutral(\

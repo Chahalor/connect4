@@ -40,23 +40,23 @@ typedef struct _s_ai	_t_ai;		/* The AI struct interface */
 
 enum e_req_ai
 {
-	ai_req_evaluate = 0,
-	ai_req_play,
-	ai_req_destroy,
-	ai_req_init
+	ai_req_evaluate = 0,	/* Request the AI to evaluate the grid    */
+	ai_req_play,			/* Request the AI to play its turn       */
+	ai_req_destroy,			/* Request the AI to destroy itself     */
+	ai_req_init				/* Request the AI to initialize itself */
 };
 
 enum e_ai_cost
 {
-	near_win = 100000,	/* placing a pawn here is a win */
-	near_3 = 1000,		/* placing a pawn here makes an alignment of 3 */
-	near_2 = 100,		/* placing a pawn here makes an alignment of 2 */
+	near_win = 100000,	/* placing a pawn here is a win                   */
+	near_3 = 1000,		/* placing a pawn here makes an alignment of 3   */
+	near_2 = 100,		/* placing a pawn here makes an alignment of 2  */
 	near_1 = 10,		/* placing a pawn here makes an alignment of 1 */
-	alone = 1,			/* placing a pawn here is alone */
-	block_1 = 10,		/* block one pawn of the player */
-	block_2 = 100,		/* block two pawns of the player */
-	block_3 = 1000,		/* block three pawns of the player */
-	block_win = 10000,	/* block the player to win */
+	alone = 1,			/* placing a pawn here is alone               */
+	block_1 = 10,		/* block one pawn of the player              */
+	block_2 = 100,		/* block two pawns of the player            */
+	block_3 = 1000,		/* block three pawns of the player         */
+	block_win = 10000,	/* block the player to win                */
 };
 
 /* ************************************************************************** */

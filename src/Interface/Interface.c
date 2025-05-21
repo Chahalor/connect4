@@ -5,13 +5,6 @@
 
 /* -----| Modules   |----- */
 #include "Interface.h"
-#include "Core.h"
-#include "get_next_line.h"
-#include "Utils.h"
-#include "formating.h"
-#include "AI.h"
-
-# include <stdio.h>
 
 #pragma endregion Header
 #pragma region Fonctions
@@ -19,7 +12,14 @@
 extern t_Core	*CORE;
 extern t_AI		*AI;
 
-/** */
+/**
+ * @brief	Function to display the end of the game.
+ * 
+ * @param order	The order of the Core about the endgame.
+ * @param grid	The grid to display.
+ * 
+ * @return int	0 if the function runs successfully.
+*/
 __attribute__((always_inline, used)) static inline int end_game(
 	const int order,
 	char **grid
@@ -50,7 +50,22 @@ __attribute__((always_inline, used)) static inline int end_game(
 	return (0);
 }
 
-/** */
+/**
+ * @brief	Let the player play his turn.
+ * 
+ * @param void
+ * 
+ * @return int	The order of the Core about the turn.
+ * @retval core_ord_player if the player played his turn.
+ * @retval core_ord_wrong_place if the player played in a wrong place.
+ * @retval core_ord_draw if the game is a draw.
+ * @retval core_ord_win_player if the player wins.
+ * @retval core_ord_win_AI if the AI wins.
+ * @retval core_ord_stop if the game is stopped.
+ * 
+ * @note The function allocates memory for the line variable.
+ *  It is the caller's responsibility to free it.
+*/
 __attribute__((always_inline, used)) static inline int	player_turn(void)
 {
 	char	*line = NULL;
@@ -83,7 +98,14 @@ __attribute__((always_inline, used)) static inline int	player_turn(void)
 	return (order);
 }
 
-/** */
+/**
+ * @brief	Display the game And run the game loop.
+ * 
+ * @param Core	The Core of the game.
+ * 
+ * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+*/
 __attribute__((used)) int display_game(
 	t_Core *const restrict Core
 )
@@ -111,7 +133,16 @@ __attribute__((used)) int display_game(
 	return (end_game(order, grid));
 }
 
-/** */
+/**
+ * @brief	Display the grid of the game.
+ * 
+ * @param grid	The grid to display.
+ * @param height	The height of the grid.
+ * @param width	The width of the grid.
+ * 
+ * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+*/
 __attribute__((used)) int	display_grid(
 	char **grid,
 	const t_uint height,

@@ -17,6 +17,10 @@
 
 /* -----| Modules  |----- */
 # include "Core.h"
+# include "get_next_line.h"
+# include "Utils.h"
+# include "formating.h"
+# include "AI.h"
 
 /* ************************************************************************** */
 /*                                 Prototypes                                 */

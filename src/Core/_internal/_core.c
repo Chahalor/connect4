@@ -22,7 +22,18 @@ extern t_AI		*AI;
 #pragma endregion Globals
 #pragma region Fonctions
 
-/** */
+/**
+ * @brief	Initialize the Core.
+ * 
+ * @param width		The width of the grid.
+ * @param height	The height of the grid.
+ * @param display	The display mode.
+ * 
+ * @return _t_Core*	The Core pointer.
+ * @retval NULL if the function fails.
+ * 
+ * @note It also initializes the random number generator.
+*/
 __attribute__((always_inline, used)) static inline _t_Core	*_Init(
 	const t_uint width,
 	const t_uint height,
@@ -58,7 +69,14 @@ __attribute__((always_inline, used)) static inline _t_Core	*_Init(
 	return (_core);
 }
 
-/** */
+/**
+ * @brief	Destroy the Core by freeing the memory allocated for it.
+ * 
+ * @param Core	The Core pointer.
+ * 
+ * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+*/
 __attribute__((always_inline, used)) static inline int	_Destroy(
 	_t_Core *Core
 )
@@ -69,7 +87,17 @@ __attribute__((always_inline, used)) static inline int	_Destroy(
 	return (0);
 }
 
-/** */
+/**
+ * @brief	Count the number of pawns in a direction.
+ *
+ * @param _Core	The Core pointer.
+ * @param point	The point to start counting from.
+ * @param dx	The x direction.
+ * @param dy	The y direction.
+ * @param pawn	The pawn to count.
+ * 
+ * @return int	The number of pawns in the direction.
+*/
 __attribute__((always_inline, used)) static inline int	count_direction(
 	const _t_Core *const restrict _Core,
 	t_point point,
@@ -81,9 +109,9 @@ __attribute__((always_inline, used)) static inline int	count_direction(
 	register int	count = 0;
 
 	while (
-		   point.x >= 0
+		   point.x > 1
 		&& point.x < _Core->width
-		&& point.y >= 0
+		&& point.y >= 1
 		&& point.y < _Core->height
 		&& _Core->grid[point.y][point.x] == pawn)
 	{
@@ -94,7 +122,15 @@ __attribute__((always_inline, used)) static inline int	count_direction(
 	return (count);
 }
 
-/** */
+/**
+ * @brief	Check if the game is won.
+ * 
+ * @param x	The x coordinate of the pawn.
+ * @param y	The y coordinate of the pawn.
+ * @param _Core	The Core pointer.
+ * 
+ * @return int	1 if the game is won, 0 otherwise.
+*/
 __attribute__((always_inline, used)) static inline int	_is_win(
 	const int x,
 	const int y,
@@ -121,7 +157,20 @@ __attribute__((always_inline, used)) static inline int	_is_win(
 	return (0);
 }
 
-/** */
+/**
+ * @brief	Add a pawn to the grid.
+ * 
+ * @param Core	The Core pointer.
+ * @param col	The column to add the pawn to.
+ * 
+ * @return int	The order of the game.
+ * @retval core_ord_stop if the game should stop.
+ * @retval core_ord_wrong_place if the column is invalid.
+ * @retval core_ord_draw if the game is a draw.
+ * @retval core_ord_win_AI if the AI won the game.
+ * @retval core_ord_win_player if the player won the game.
+ * @retval core_ord_display if the game should be displayed.
+*/
 __attribute__((always_inline, used)) static inline int	_core_add_pown(
 	_t_Core *const restrict Core,
 	register const t_uint col
@@ -152,7 +201,16 @@ __attribute__((always_inline, used)) static inline int	_core_add_pown(
 	}
 }
 
-/** */
+/**
+ * @brief	Core function dispatcher.
+ * 
+ * @param access	The access level.
+ * @param data	The data to pass to the Core.
+ * @param response	The response from the Core.
+ * 
+ * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+ */
 __attribute__((hot, visibility("hidden"))) int	_Core(
 	const int access,
 	void *data,
@@ -163,7 +221,7 @@ __attribute__((hot, visibility("hidden"))) int	_Core(
 
 	switch (access)
 	{
-		case core_req_add_pown:
+		case core_req_add_pawn:
 			return (_core_add_pown(Core, *(t_uint *)data));
 		case core_req_next_turn:
 		{

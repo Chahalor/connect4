@@ -9,9 +9,9 @@
 /*                                 Config                                     */
 /* ************************************************************************** */
 
-# define PLAYER_PAWN		'X'
-# define AI_PAWN			'O'
-# define EMPTY_PAWN			' '
+# define PLAYER_PAWN		'X'	/* Player pawn   */
+# define AI_PAWN			'O'	/* AI pawn      */
+# define EMPTY_PAWN			' '	/* Empty pawn  */
 
 # define _unlikely(cond)	__builtin_expect(cond, 0)	/* This condition is not expected to be true */
 # define _likely(cond)		__builtin_expect(cond, 1)	/* This condition is expected to be True    */
