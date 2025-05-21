@@ -2,7 +2,7 @@ DIR_MODULE_UTILS		:= Utils
 DIR_INTERFACE_UTILS	:= $(DIR_MODULE_UTILS)
 DIR_INTERNAL_UTILS	:= $(DIR_MODULE_UTILS)/_internal
 
-SRC_INTERFACE_UTILS	:= Utils.c get_next_line.c get_next_line_utils.c 
+SRC_INTERFACE_UTILS	:= get_next_line.c get_next_line_utils.c Utils.c 
 SRC_INTERNAL_UTILS	:= 
 
 OBJ_UTILS			:= $(addprefix $(DIR_OBJ)/$(DIR_INTERFACE_UTILS)/, $(SRC_INTERFACE_UTILS:.c=.o))

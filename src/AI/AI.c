@@ -66,6 +66,7 @@ __attribute__((cold)) t_AI	*AI_create(
 		.evaluate = _Evaluate,
 		.play = _Play,
 		.destroy = _AI_Destroy,
+		.last_move = (t_point){.x = 0, .y = 0},
 	};
 	if (_unlikely(_AI(ai_req_init, &(t_point){.x = width, .y = height}) < 0))
 		return (free(AI), NULL);

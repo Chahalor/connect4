@@ -143,7 +143,7 @@ all: \$(NAME) install
 # ***************************************************** #
 
 \$(NAME):  \$(LIBFT) \$(OBJ_ALL) \$(OBJ_MAIN)
-	\$(CC) \$(CFLAGS) \$(DEBUGFLAGS) \$(INCLUDE_ALL) \$^ \$(LIBFT) -lncurses -o \$(NAME) 
+	\$(CC) \$(CFLAGS) \$(DEBUGFLAGS) \$(INCLUDE_ALL) \$^ \$(LIBFT) -o \$(NAME) 
 
 \$(DIR_OBJ)/%.o: \$(DIR_SRC)/%.c
 	@mkdir -p \$(DIR_OBJ)

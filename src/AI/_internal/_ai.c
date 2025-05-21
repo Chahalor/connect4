@@ -18,7 +18,9 @@ __attribute__((always_inline, used)) static inline _t_ai	*_init(
 )
 {
 	_t_ai			*_ai = NULL;
-	const size_t	grid_size = sizeof(_t_ai) + sizeof(int *) * height + sizeof(int) * width * height;
+	const size_t	grid_size = sizeof(_t_ai) +
+								sizeof(int *) * height +
+								sizeof(int) * width * height;
 	char			*block = (char *)malloc(grid_size);
 	t_uint			i = -1;
 	int				*data = NULL;
@@ -29,13 +31,10 @@ __attribute__((always_inline, used)) static inline _t_ai	*_init(
 	_ai = (_t_ai *)block;
 	_ai->width = width;
 	_ai->height = height;
-
 	_ai->grid = (int **)(block + sizeof(_t_ai));
 	data = (int *)(block + sizeof(_t_ai) + sizeof(int *) * height);
-
 	while (++i < height)
 		_ai->grid[i] = data + i * width;
-
 	return (_ai);
 }
 
