@@ -29,8 +29,8 @@ __attribute__((always_inline, used)) static inline _t_Core	*_Init(
 
 	Core = (_t_Core *)malloc(
 		  sizeof(_t_Core)
-		+ sizeof(char **) * height
-		+ sizeof(char) * width * height
+		+ sizeof(char **) * (height + 1)
+		+ sizeof(char) * (width * height + 1)
 	);
 	if (_unlikely(!Core))
 		return (NULL);
@@ -96,12 +96,15 @@ __attribute__((always_inline, used)) static inline int	_is_win(
 	static const int	directions[4][2] = {{1, 0}, {0, 1}, {1, 1}, {1, -1}};
 	const char			pawn = _Core->grid[y][x];
 	register int		i = -1;
+	int					dx;
+	int					dy;
+	int					count;
 
 	while (++i < 4)
 	{
-		int	dx = directions[i][0];
-		int	dy = directions[i][1];
-		int	count = 1;
+		dx = directions[i][0];
+		dy = directions[i][1];
+		count = 1;
 		count += count_direction(_Core, (t_point){x + dx, y + dy}, dx, dy, pawn);
 		count += count_direction(_Core, (t_point){x - dx, y - dy}, -dx, -dy, pawn);
 		if (count > 3)
@@ -117,7 +120,7 @@ __attribute__((always_inline, used)) static inline int	_core_add_pown(
 	register const t_uint col
 )
 {
-	register t_uint	x = 0;
+	register t_uint	x = Core->height - 1;
 
 	if (_unlikely(!Core))
 		return (core_ord_stop);
@@ -127,16 +130,16 @@ __attribute__((always_inline, used)) static inline int	_core_add_pown(
 		return (core_ord_draw);
 	else
 	{
-		while (x < Core->height && !Core->grid[x][col])
-			++x;
-		if (x == Core->height)
-			return (-2);
+		while (x > 0 && Core->grid[x][col])
+			--x;
+		if (_unlikely(x == 0 && Core->grid[x][col]))
+			return (core_ord_wrong_place);
 		Core->grid[x][col] = Core->turn ? AI_PAWN : PLAYER_PAWN;
-		if (_is_win(col, x, Core))
+		if (_unlikely(_is_win(col, x, Core)))
 			return (Core->turn ? core_ord_win_AI : core_ord_win_player);
 		Core->turn = !Core->turn;
 		--Core->nb_case_left;
-		return (1);
+		return (core_ord_display);
 	}
 }
 
