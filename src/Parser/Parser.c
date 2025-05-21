@@ -50,7 +50,7 @@ t_config	check_args(int argc, char **argv)
 	int	rows;
 
 	if (argc != 3 && argc != 4)
-		return (print_error_and_exit());
+		return (print_usage());
 	else if (!is_numeric(argv[1]))
 		return (err_invalide_str(argv[1]));
 	else if (!is_numeric(argv[2]))
@@ -71,7 +71,7 @@ t_config	check_args(int argc, char **argv)
 	if (argc == 4)
 	{
 		if (!(argv[3][0] == '0' || argv[3][0] == '1') || argv[3][1] != '\0')
-			return (print_error_and_exit());
+			return (print_usage());
 		config.interface_enabled = (argv[3][0] == '1');
 	}
 	return (config);
