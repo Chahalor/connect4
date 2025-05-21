@@ -6,46 +6,43 @@
 # include "_ai.h"
 
 /* -----| Modules   |----- */
-	//...
+#include "Utils.h"
+# include <stdio.h>
 
 #pragma endregion Header
 #pragma region Fonctions
 
+t_AI			*AI = NULL;
+extern t_Core	*CORE;
+
 /** */
-__attribute__((visibility("hidden"), used)) int	_Evaluate(
-	t_AI *ai,
-	t_Core *core
-)
+__attribute__((visibility("hidden"), used)) int	_Evaluate(void)
 {
-	if (_unlikely(!ai || !core))
+	if (_unlikely(!AI || !CORE))
 		return (-1);
 	return (0);
 }
 
 /** */
-__attribute__((visibility("hidden"), used)) int	_Play(
-	t_AI *ai,
-	t_Core *core
-)
+__attribute__((visibility("hidden"), used)) int	_Play(void)
 {
-	if (_unlikely(!ai || !core))
+	t_uint pos = 0;
+	if (_unlikely(!AI || !CORE))
 		return (-1);
+	pos = randint(0, CORE->width - 1);	
+	while (CORE->add_pawn(pos) == core_ord_wrong_place)
+		pos = randint(0, CORE->width - 1);
 	return (0);
 }
 
 /** */
-__attribute__((visibility("hidden"), used)) int	_AI_Destroy(
-	t_AI **ai
-)
+__attribute__((visibility("hidden"), used)) int	_AI_Destroy(void)
 {
-	if (_unlikely(!ai || !*ai))
+	if (_unlikely(!AI))
 		return (-1);
-	else
-	{
-		free(*ai);
-		*ai = NULL;
-		return (0);
-	}
+	free(AI);
+	AI = NULL;
+	return (0);
 }
 
 /** */
@@ -54,20 +51,18 @@ __attribute__((cold)) t_AI	*AI_create(
 	const t_uint height
 )
 {
-	t_AI	*ai;
-
-	ai = (t_AI *)malloc(sizeof(t_AI));
-	if (_unlikely(!ai))
+	AI = (t_AI *)malloc(sizeof(t_AI));
+	if (_unlikely(!AI))
 		return (NULL);
-	*ai = (t_AI){
+	*AI = (t_AI){
 		.evaluate = _Evaluate,
 		.play = _Play,
 		.destroy = _AI_Destroy,
 	};
 	if (_unlikely(_AI(ai_req_init, &(t_point){.x = width, .y = height}) < 0))
-		return (free(ai), NULL);
+		return (free(AI), NULL);
 	else
-		return (ai);
+		return (AI);
 }
 
 #pragma region Functions
