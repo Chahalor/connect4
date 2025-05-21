@@ -23,7 +23,9 @@ __attribute__((always_inline, used)) inline int	randint(
 	return (rand() % (max - min + 1) + min);
 }
 
-__attribute__((always_inline, used)) inline int	ft_atoi(char *str)
+__attribute__((always_inline, used)) inline int	ft_atoi(
+	const char *const restrict str
+)
 {
 	register int i = 0;
 	register int res = 0;
@@ -36,6 +38,28 @@ __attribute__((always_inline, used)) inline int	ft_atoi(char *str)
 		++i;
 	}
 	return (res);
+}
+
+static inline int	ft_isdigit(int c)
+{
+	return ((c >= '0' && c <= '9'));
+}
+
+inline int	is_numeric(
+	const char *const restrict str
+)
+{
+	register int	i = 0;
+
+	if (__glibc_unlikely(!str[i]))
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 #pragma endregion Fonctions

@@ -13,10 +13,8 @@
 # define AI_PAWN			'O'
 # define EMPTY_PAWN			' '
 
-# define HEADER "CONNECT 4\n"	/* Header of the game */
-
-# define _unlikely(cond)	__builtin_expect(!!cond, 0)	/* This condition is not expected to be true */
-# define _likely(cond)		__builtin_expect(!!cond, 1)	/* This condition is expected to be True    */
+# define _unlikely(cond)	__builtin_expect(cond, 0)	/* This condition is not expected to be true */
+# define _likely(cond)		__builtin_expect(cond, 1)	/* This condition is expected to be True    */
 
 # ifndef DEBUG
 #  define DEBUG	0	/* 0: debug disable, 1: debug enable */
