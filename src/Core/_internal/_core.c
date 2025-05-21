@@ -55,7 +55,6 @@ __attribute__((always_inline, used)) static inline _t_Core	*_Init(
 	_core->nb_case_left = width * height;
 	_core->display = display;
 	_core->turn = (rand() & 1);
-	printf("_turn: %d\n", _core->turn);	//rm
 	return (_core);
 }
 
@@ -133,7 +132,7 @@ __attribute__((always_inline, used)) static inline int	_core_add_pown(
 
 	if (_unlikely(!Core))
 		return (core_ord_stop);
-	if (_unlikely(col >= Core->width))
+	else if (col >= Core->width)
 		return (core_ord_wrong_place);
 	else if (_unlikely(Core->nb_case_left == 0))
 		return (core_ord_draw);
