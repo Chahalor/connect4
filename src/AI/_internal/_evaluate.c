@@ -166,7 +166,9 @@ int	choose_column(
 			}
 		}
 	}
-	max_index = randint(0, _ai->width - 1);
+
+	if (!max)
+		max_index = randint(0, _ai->width - 1);
 	return (max_index);
 }
 
