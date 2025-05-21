@@ -151,11 +151,36 @@ __attribute__((used)) int	display_grid(
 {
 	register t_uint	i = -1;
 	register t_uint	j = -1;
+	register t_uint k = 1;
+	register t_uint num_digits = 1;
+	register t_uint temp_width = width - 1;
+	register t_uint digit_pos = num_digits;
+	register t_uint divisor = 1;
+	char digit = '0';
 
 	if (_unlikely(!grid))
 		return (-1);
 	else
 	{
+		while (temp_width >= 10) {
+			temp_width /= 10;
+			num_digits++;
+		}
+		write(1, "\n", 1);
+		for (digit_pos = num_digits; digit_pos > 0; digit_pos--) {
+			write(1, " ", 1);
+			for (j = 0; j < width; j++) {
+				write(1, GREEN, 5);
+				divisor = 1;
+				for (k = 1; k < digit_pos; k++)
+					divisor *= 10;
+				digit = '0' + ((j / divisor) % 10);
+				write(1, &digit, 1);
+				write(1, RESET, 4);
+				write(1, " ", 1);
+			}
+			write(1, "\n", 1);
+		}
 		while (++i < height)
 		{
 			write(1, "|", 1);
