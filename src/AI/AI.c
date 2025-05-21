@@ -3,11 +3,10 @@
 #pragma region Header
 
 /* -----| Internals |----- */
-# include "_ai.h"
+#include "_ai.h"
 
 /* -----| Modules   |----- */
-#include "Utils.h"
-#include "ft_printf.h"
+#include "AI.h"
 
 #pragma endregion Header
 #pragma region Fonctions
@@ -15,7 +14,14 @@
 t_AI			*AI = NULL;
 extern t_Core	*CORE;
 
-/** */
+/**
+ * @brief	Request the AI to evaluate the grid.
+ * 
+ * @param void
+ * 
+ * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+*/
 __attribute__((visibility("hidden"), used)) int	_Evaluate(void)
 {
 	if (_unlikely(!AI || !CORE))
@@ -24,7 +30,16 @@ __attribute__((visibility("hidden"), used)) int	_Evaluate(void)
 		return (_AI(ai_req_evaluate, NULL));
 }
 
-/** */
+/**
+ * @brief	Request the AI to play its turn.
+ * 
+ * @param void
+ * 
+ * @return int	The order of the Core about the turn.
+ * @retval core_ord_ai if the AI played its turn.
+ * @retval core_ord_wrong_place if the AI played in a wrong place.
+ * @retval -1 if the function fails.
+*/
 __attribute__((visibility("hidden"), used)) int	_Play(void)
 {
 	t_uint pos = 0;
@@ -45,7 +60,16 @@ __attribute__((visibility("hidden"), used)) int	_Play(void)
 	return (ord);
 }
 
-/** */
+/**
+ * @brief	Ask nicely the AI to destroy itself.
+ * 
+ * @param void
+ * 
+ * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+ * 
+ * @note The AI is destroyed by freeing the memory allocated for it.
+*/
 __attribute__((visibility("hidden"), used)) int	_AI_Destroy(void)
 {
 	if (_unlikely(!AI))
@@ -55,7 +79,15 @@ __attribute__((visibility("hidden"), used)) int	_AI_Destroy(void)
 	return (0);
 }
 
-/** */
+/**
+ * @brief	Create a new AI instance.
+ * 
+ * @param width	The width of the grid.
+ * @param height	The height of the grid.
+ * 
+ * @return t_AI*	The new AI instance.
+ * @retval NULL if the function fails.
+*/
 __attribute__((cold)) t_AI	*AI_create(
 	const t_uint width,
 	const t_uint height

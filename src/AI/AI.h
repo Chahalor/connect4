@@ -18,6 +18,8 @@
 
 /* -----| Modules  |----- */
 # include "Core.h"
+# include "Utils.h"
+# include "ft_printf.h"
 
 /* ************************************************************************** */
 /*                                 Typedefs                                   */

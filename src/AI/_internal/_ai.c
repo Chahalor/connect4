@@ -11,7 +11,15 @@
 #pragma endregion Header
 #pragma region Fonctions
 
-/** */
+/**
+ * @brief	Initialize the AI internal struct.
+ * 
+ * @param width		The width of the grid.
+ * @param height	The height of the grid.
+ * 
+ * @return _t_ai*	The AI internal struct.
+ * @retval NULL if the function fails.
+*/
 __attribute__((always_inline, used)) static inline _t_ai	*_init(
 	const t_uint width,
 	const t_uint height
@@ -38,7 +46,14 @@ __attribute__((always_inline, used)) static inline _t_ai	*_init(
 	return (_ai);
 }
 
-/** */
+/**
+ * * @brief	Destroy the AI internal struct.
+ * 
+ * * @param ai	The AI internal struct.
+ * 
+ * * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+*/
 __attribute__((always_inline, used)) static inline int _destroy(
 	_t_ai **ai
 )
@@ -53,7 +68,15 @@ __attribute__((always_inline, used)) static inline int _destroy(
 	}
 }
 
-/** */
+/**
+ * @brief	AI function dispatcher.
+ * 
+ * @param access	The access level.
+ * @param data		The data to pass to the AI.
+ * 
+ * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+*/
 __attribute__((visibility("hidden"), used)) int	_AI(
 	int access,
 	void *data

@@ -13,7 +13,15 @@
 
 extern t_Core	*CORE;
 
-__attribute__((unused)) static inline t_uint _get_next_row(
+/**
+ * @brief	Get the next available row of the grid.
+ * 
+ * @param grid	The game grid.
+ * @param col	The column to check.
+ * 
+ * @return t_uint	The next available row, or -1 if none found.
+ */
+__attribute__((hot)) static inline t_uint _get_next_row(
 	char **grid,
 	const int col
 )
@@ -26,7 +34,15 @@ __attribute__((unused)) static inline t_uint _get_next_row(
 	return (-1);
 }
 
-/** */
+/**
+ * @brief	Send to the AI the best move.
+ * 
+ * @param _ai	The AI internal struct.
+ * 
+ * @return The best move column.
+ * 
+ * @note we never say the best move is the best for the AI
+*/
 __attribute__((always_inline, used)) inline int	_play(
 	_t_ai *_ai
 )
@@ -34,7 +50,14 @@ __attribute__((always_inline, used)) inline int	_play(
 	return (_ai->best_move);
 }
 
-/** */
+/**
+ * @brief	Check if the column is playable.
+ * 
+ * @param grid	The game grid.
+ * @param col	The column to check.
+ * 
+ * @return int	1 if the column is playable, 0 otherwise.
+*/
 __attribute__((always_inline, used)) static inline int _playable_column(
 	char **grid,
 	const int col
@@ -43,7 +66,17 @@ __attribute__((always_inline, used)) static inline int _playable_column(
 	return (!grid[0][col]);
 }
 
-/** */
+/**
+ * @brief	Count the number of pawns in a direction.
+ * 
+ * @param grid	The game grid.
+ * @param point	The starting point.
+ * @param dx	The direction vector in the x-axis.
+ * @param dy	The direction vector in the y-axis.
+ * @param pawn	The pawn type to count.
+ * 
+ * @return int	The number of pawns found.
+*/
 __attribute__((always_inline, used)) static inline int	count_direction_win(
 	char **grid,
 	t_point point,
@@ -55,9 +88,9 @@ __attribute__((always_inline, used)) static inline int	count_direction_win(
 	register int	count = 0;
 
 	while (
-		   point.x >= 0
+		   point.x > 1
 		&& point.x < CORE->width
-		&& point.y >= 0
+		&& point.y > 1
 		&& point.y < CORE->height
 		&& grid[point.y][point.x] == pawn)
 	{
@@ -68,7 +101,14 @@ __attribute__((always_inline, used)) static inline int	count_direction_win(
 	return (count);
 }
 
-/** */
+/**
+ * @brief	Check if the game is won.
+ * 
+ * @param x	The x coordinate of the pawn.
+ * @param y	The y coordinate of the pawn.
+ * 
+ * @return int	1 if the game is won, 0 otherwise.
+*/
 __attribute__((always_inline, used)) static inline int	_is_win(
 	const int x,
 	const int y,
@@ -95,7 +135,22 @@ __attribute__((always_inline, used)) static inline int	_is_win(
 	return (0);
 }
 
-int	score_position(
+/**
+ * @brief	Score the position for a given coordinate.
+ * 
+ * @param grid	The game grid.
+ * @param width	The width of the grid.
+ * @param height	The height of the grid.
+ * @param x	The x coordinate of the pawn.
+ * @param y	The y coordinate of the pawn.
+ * @param target	The pawn type to score.
+ * 
+ * @return int	The score for the position.
+ * 
+ * @note The score is calculated based on the number of pawns in the
+ *  *  horizontal, vertical and diagonal directions.
+ */
+__attribute__((always_inline, used)) static inline int	score_position(
 	char **grid,
 	int width,
 	int height,
@@ -110,29 +165,50 @@ int	score_position(
 		{1, 1},  // diagonale ↘
 		{1, -1}  // diagonale ↗
 	};
-	int	score = 0;
+	int					score = 0;
+	int					d = 0;
+	int					dx = 0;
+	int					dy = 0;
+	int					dir = 0;
 
-	for (int d = 0; d < 4; ++d)
+	while (d < 4)
 	{
-		int dx = dirs[d][0];
-		int dy = dirs[d][1];
+		dx = dirs[d][0];
+		dy = dirs[d][1];
+		dir = -1;
 
-		// Parcours dans les deux sens
-		for (int dir = -1; dir <= 1; dir += 2)
+		while (dir <= 1)
 		{
-			int nx = x + dir * dx;
-			int ny = y + dir * dy;
-			if (nx >= 0 && nx < width && ny >= 0 && ny < height)
-			if (grid[ny][nx] == target)
-				score = !score ? 1 : score * 2;
+			if (dir != 0)
+			{
+				int nx = x + dir * dx;
+				int ny = y + dir * dy;
+				if (nx >= 0 && nx < width && ny >= 0 && ny < height)
+				if (grid[ny][nx] == target)
+					score = !score ? 1 : score * 2;
+			}
+			dir += 2;
 		}
+		++d;
 	}
-	// ft_printf(">> AI score for position (%d, %d) with target %c: %d\n", x, y, target, score);
 	return score;
 }
 
-
-int	choose_column(
+/**
+ * @brief	Choose the best column to play.
+ * 
+ * @param _ai	The AI internal struct.
+ * @param grid	The game grid.
+ * 
+ * @return int	The best column to play.
+ * 
+ * @note The function iterates through each column and row of the grid,
+ * *  checking if the column is playable. If it is, it calculates the
+ * *  offensive and defensive scores for that position. The column with
+ * *  the highest score is chosen.
+ * @note If no column is found, a random column is chosen.
+ */
+__attribute__((always_inline, used)) static inline int	choose_column(
 	_t_ai *_ai,
 	char **grid
 )
@@ -172,25 +248,27 @@ int	choose_column(
 	return (max_index);
 }
 
-/** */
+/**
+ *  @brief	Evaluate the grid and choose the best move.
+ * 
+ * @param _ai	The AI internal struct.
+ * 
+ * @return int	0 if the function runs successfully.
+ * @retval -1 if the function fails.
+*/
 __attribute__((always_inline, used)) inline int	_evaluate(
 	_t_ai *_ai
 )
 {
-	char			**grid = NULL;
+	static char	**grid = NULL;
 
 	ft_printf(">> AI is evaluating the grid...\n");
+
 	if (_unlikely(!_ai))
 		return (-1);
 	else if (!grid)
 		CORE->get_grid(&grid);
-
-	_ai->best_move = choose_column(
-		_ai,
-		grid
-	);
-	// ft_printf(">> AI chose column %d\n", _ai->best_move);
-
+	_ai->best_move = choose_column(_ai, grid);
 	return (0);
 }
 
