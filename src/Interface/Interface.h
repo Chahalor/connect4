@@ -6,9 +6,15 @@
 # pragma once
 
 #include "Core.h"
+#include "CLI.h"
 
 int display_grid(
-	const char *const restrict *const restrict grid,
+	char **grid,
+	const t_uint height,
+	const t_uint width
+);
+
+int display_game(
 	t_Core *const restrict Core
 );
 
