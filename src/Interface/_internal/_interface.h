@@ -22,5 +22,6 @@
 
 /* -----| Modules  |----- */
 # include "Core.h"
+#include "ft_printf.h"
 
 #endif /* _INTERFACE_H */

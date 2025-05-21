@@ -39,7 +39,7 @@ __attribute__((visibility("hidden"), used)) int	_Play(void)
 		pos = randint(0, CORE->width - 1);
 		ord = CORE->add_pawn(pos);
 	}
-	ft_printf("AI played at the column number %d\n", pos);
+	ft_printf(">> AI played at the column number %d\n", pos);
 	return (ord);
 }
 
