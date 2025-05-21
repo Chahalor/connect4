@@ -10,9 +10,15 @@
 # include "_core.h"
 
 /* -----| Modules   |----- */
-	//...
+#include "AI.h"
 
 #pragma endregion Header
+#pragma region Globals
+
+extern t_Core	*CORE;
+extern t_AI		*AI;
+
+#pragma endregion Globals
 #pragma region Fonctions
 
 /** */
@@ -22,32 +28,32 @@ __attribute__((always_inline, used)) static inline _t_Core	*_Init(
 	const t_uint display
 )
 {
-	_t_Core			*Core = NULL;
+	_t_Core			*_core = NULL;
 	register t_uint	i =-1;
 	register t_uint	j = -1;
 
 
-	Core = (_t_Core *)malloc(
+	_core = (_t_Core *)malloc(
 		  sizeof(_t_Core)
 		+ sizeof(char **) * (height + 1)
 		+ sizeof(char) * (width * height + 1)
 	);
-	if (_unlikely(!Core))
+	if (_unlikely(!_core))
 		return (NULL);
-	Core->grid = (char **)(Core + 1);
+	_core->grid = (char **)(_core + 1);
 	while (++i < height)
 	{
-		Core->grid[i] = (char *)(Core->grid + height) + i * width;
+		_core->grid[i] = (char *)(_core->grid + height) + i * width;
 		while (++j < width)
-			Core->grid[i][j] = 0;
+			_core->grid[i][j] = 0;
 		j = -1;
 	}
-	Core->width = width;
-	Core->height = height;
-	Core->nb_case_left = width * height;
-	Core->display = display;
-	Core->turn = 0;
-	return (Core);
+	_core->width = width;
+	_core->height = height;
+	_core->nb_case_left = width * height;
+	_core->display = display;
+	_core->turn = 0;
+	return (_core);
 }
 
 /** */
@@ -156,6 +162,16 @@ __attribute__((hot, visibility("hidden"))) int	_Core(
 	{
 		case core_req_add_pown:
 			return (_core_add_pown(Core, *(t_uint *)data));
+		case core_req_next_turn:
+		{
+			if (_unlikely(!Core))
+				return (-1);
+			if (Core->turn)
+				AI->play();
+			else
+				return (core_ord_player);
+			// return (Core->turn ? AI->play() : core_ord_player);
+		}
 		case core_req_get_grid:
 			if (_unlikely(!response))
 				return (-1);
