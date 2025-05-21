@@ -15,6 +15,8 @@
 #pragma endregion Header
 #pragma region Fonctions
 
+extern t_Core	*CORE;
+
 /** */
 __attribute__((used)) int display_game(
 	t_Core *const restrict Core
@@ -46,6 +48,7 @@ __attribute__((used)) int display_game(
 			Core->add_pawn(col);
 		}
 		free(line);
+		CORE->next_turn();
 	}
 	return (0);
 }

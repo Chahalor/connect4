@@ -1,0 +1,56 @@
+{
+   ncurses_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses*.so*
+   ...
+}
+{
+   tinfo_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo*.so*
+   ...
+}
+{
+   ncurses_calloc
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses*.so*
+   ...
+}
+{
+   tinfo_calloc
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo*.so*
+   ...
+}
+{
+   ncurses_realloc
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libncurses*.so*
+   ...
+}
+{
+   tinfo_realloc
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo*.so*
+   ...
+}
+{
+   strdup
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo*.so*
+   ...
+}

@@ -4,6 +4,9 @@
 
 /* -----| Systems   |----- */
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 
 /* -----| Modules   |----- */
 #include "Core.h"
@@ -14,31 +17,37 @@
 #pragma endregion Header
 #pragma region Fonctions
 
+extern t_Core	*CORE;
+
 int	main(int argc, char const *argv[])
 {
 	const t_config	args = check_args(argc, (char **)argv);
-	t_Core 		*core = NULL;
-	char 		**grid = NULL;
+	WINDOW			*win = NULL;
 
 	if (_unlikely(args.error))
-		return (-1);
-	core = Core_init(&args);
-	if (_unlikely(!core))
+		return (1);
+	;
+	if (_unlikely(!Core_init(&args) || !AI_create(args.columns, args.rows)))
 	{
-		write(2, "Error: Core_init failed\n", 24);
-		return (-1);
+		write(2, "Error: Init failed\n", 24);
+		return (2);
 	}
-
-	core->get_grid(&grid);
-	if (_unlikely(!grid))
+	else if (args.interface_enabled)
 	{
-		write(2, "Error: get_grid failed\n", 23);
-		core->destroy(&core);
-		return (-1);
+		win = init_interface();
+		if (_unlikely(!win))
+		{
+			CORE->destroy();
+			endwin();
+			return (3);
+		}
 	}
-	else
-		display_grid((const char *const restrict *)grid, core);
+	srand(time(NULL));
 
-	core->destroy(&core);
+	display_game(CORE);
+
+	CORE->destroy();
+	endwin();
+	delwin(win);
 	return 0;
 }

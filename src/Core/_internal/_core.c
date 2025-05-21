@@ -166,11 +166,8 @@ __attribute__((hot, visibility("hidden"))) int	_Core(
 		{
 			if (_unlikely(!Core))
 				return (-1);
-			if (Core->turn)
-				AI->play();
 			else
-				return (core_ord_player);
-			// return (Core->turn ? AI->play() : core_ord_player);
+				return (Core->turn ? AI->play() : core_ord_player);
 		}
 		case core_req_get_grid:
 			if (_unlikely(!response))
