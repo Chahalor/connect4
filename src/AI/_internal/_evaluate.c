@@ -12,7 +12,6 @@
 #pragma region Fonctions
 
 extern t_Core	*CORE;
-extern t_AI		*AI;
 
 __attribute__((unused)) static inline t_uint _get_next_row(
 	char **grid,
@@ -147,7 +146,7 @@ int	choose_column(
 
 	while (++i < _ai->width)
 	{
-		j = -1;
+		j = _get_next_row(grid, i);
 		while (++j < _ai->height)
 		{
 			if (_playable_column(grid, i))
