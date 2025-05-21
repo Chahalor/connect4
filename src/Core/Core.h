@@ -62,9 +62,10 @@ enum e_Core_order
 
 struct s_Core
 {
-	int		(*add_pawn)(const t_uint cols);	/* Add a apwn to the cols colon */
-	int		(*get_grid)(char ***grid);		/* Request the grid            */
-	int		(*destroy)(t_Core **core);		/* The Core destroyer         */
+	int		(*add_pawn)(const t_uint cols);	/* Add a apwn to the cols colon  */
+	int		(*get_grid)(char ***grid);		/* Request the grid             */
+	int		(*next_turn)(void);				/* Next turn                   */
+	int		(*destroy)(void);				/* The Core destroyer         */
 	t_uint	width;							/* The grid width            */
 	t_uint	height;							/* The Grid heigth          */
 };

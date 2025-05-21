@@ -41,7 +41,8 @@ enum e_Core_request
 	core_req_init,		/* Request the Core to init itself            */
 	core_req_add_pown,	/* Request The Core to add a awn to the grid */
 	core_req_get_grid,	/* Request the Core to send The Grid        */
-	core_req_destroy	/* Request the Core to destroy itself      */
+	core_req_destroy,	/* Request the Core to destroy itself      */
+	core_req_next_turn,	/* Request the Core to change the turn    */
 };
 
 
