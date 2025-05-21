@@ -121,7 +121,6 @@ __attribute__((always_inline, used)) static inline int	_is_win(
 	return (0);
 }
 
-
 /** */
 __attribute__((always_inline, used)) static inline int	_core_add_pown(
 	_t_Core *const restrict Core,
