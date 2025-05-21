@@ -142,6 +142,8 @@ __attribute__((always_inline, used)) static inline int	_core_add_pown(
 			--x;
 		if (_unlikely(x == 0 && Core->grid[x][col]))
 			return (core_ord_wrong_place);
+		else if (!Core->turn)
+			AI->last_move = (t_point){.x = x, .y = col};
 		Core->grid[x][col] = Core->turn ? AI_PAWN : PLAYER_PAWN;
 		if (_unlikely(_is_win(col, x, Core)))
 			return (Core->turn ? core_ord_win_AI : core_ord_win_player);

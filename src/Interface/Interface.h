@@ -5,16 +5,30 @@
 
 # pragma once
 
-#include "Core.h"
-#include "CLI.h"
+/* ************************************************************************** */
+/*                                 Headers                                    */
+/* ************************************************************************** */
 
-int display_grid(
+/* -----| Systems  |----- */
+	//...
+
+/* -----| Internal |----- */
+	//...
+
+/* -----| Modules  |----- */
+# include "Core.h"
+
+/* ************************************************************************** */
+/*                                 Prototypes                                 */
+/* ************************************************************************** */
+
+int	display_grid(
 	char **grid,
 	const t_uint height,
 	const t_uint width
 );
 
-int display_game(
+int	display_game(
 	t_Core *const restrict Core
 );
 

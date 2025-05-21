@@ -8,3 +8,12 @@
  - [X] From the subject: Easy to identify positions on the interface
  - [X] print a "you win/you lose" message
  - [X] increase the qualtiy of the "usage/error" message
+
+
+## AI:
+ - [ ] check for win
+ - [ ] number of blocks 3
+ - [ ] number of 
+ - [ ] number of near 3
+ - [ ] number of near 2
+ - [ ] number of near 1

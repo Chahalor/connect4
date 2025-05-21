@@ -37,8 +37,7 @@ __attribute__((always_inline, used)) inline int	_evaluate(
 		j = -1;
 		while (++j < _ai->width)
 		{
-			_ai->best_move = randint(0, CORE->width - 1);	// of course change this to prod (pls notifie us copilot)
-			return (_ai->grid[i][j]);
+			
 		}
 	}
 	return (0);

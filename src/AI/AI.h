@@ -38,9 +38,10 @@ typedef struct s_AI		t_AI;			/* The AI struct interface */
 
 struct s_AI
 {
-	int	(*evaluate)(void);	/* Function to evaluate the grid */
-	int	(*play)(void);		/* Function to play the AI */
-	int	(*destroy)(void);					/* Function to destroy the AI */
+	int		(*evaluate)(void);	/* Function to evaluate the grid */
+	int		(*play)(void);		/* Function to play the AI */
+	int		(*destroy)(void);	/* Function to destroy the AI */
+	t_point	last_move;			/* The last move of the player */
 };
 
 /* ************************************************************************** */
