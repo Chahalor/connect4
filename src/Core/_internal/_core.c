@@ -3,7 +3,8 @@
 #pragma region Header
 
 /* -----| Systems   |----- */
-	//...
+#include <stdio.h>
+#include <time.h>
 
 /* -----| Internals |----- */
 # include "Core.h"
@@ -32,6 +33,7 @@ __attribute__((always_inline, used)) static inline _t_Core	*_Init(
 	register t_uint	i =-1;
 	register t_uint	j = -1;
 
+	srand(time(NULL));
 
 	_core = (_t_Core *)malloc(
 		  sizeof(_t_Core)
@@ -52,7 +54,8 @@ __attribute__((always_inline, used)) static inline _t_Core	*_Init(
 	_core->height = height;
 	_core->nb_case_left = width * height;
 	_core->display = display;
-	_core->turn = 0;
+	_core->turn = (rand() & 1);
+	printf("_turn: %d\n", _core->turn);	//rm
 	return (_core);
 }
 

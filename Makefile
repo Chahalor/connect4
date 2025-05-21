@@ -32,14 +32,14 @@ DEBUGFLAGS	:=
 DIR_SRC		:= src
 DIR_OBJ		:= .build
 DIR_BONUS	:= 
-INCLUDE_ALL	:=-Iglobal -I$(DIR_SRC)/AI -I$(DIR_SRC)/Core -I$(DIR_SRC)/Interface -I$(DIR_SRC)/Parser -I$(DIR_SRC)/Utils
+INCLUDE_ALL	:=-Iglobal -I$(DIR_SRC)/AI -I$(DIR_SRC)/Core -I$(DIR_SRC)/ft_printf -I$(DIR_SRC)/Interface -I$(DIR_SRC)/Parser -I$(DIR_SRC)/Utils
 
 DIR_LIBFT	:= 
 LIBFT		:= #$(DIR_LIBFT)/libft.a
 DEPS		:= $(OBJ_ALL:.o=.d)
 
 # Here we include all the makefile.mk files
-include  src/AI/makefile.mk src/Core/makefile.mk src/Interface/makefile.mk src/Parser/makefile.mk src/Utils/makefile.mk
+include  src/AI/makefile.mk src/Core/makefile.mk src/ft_printf/makefile.mk src/Interface/makefile.mk src/Parser/makefile.mk src/Utils/makefile.mk
 -include $(DEPS)
 
 SRC_MAIN	:= main.c
@@ -48,7 +48,7 @@ SRC_BONUS	:=
 # all object files for the modules
 OBJ_MAIN	:= $(addprefix $(DIR_OBJ)/, $(SRC_MAIN:.c=.o))
 OBJ_BONUS	:= $(addprefix $(DIR_OBJ)/, $(SRC_BONUS:.c=.o))
-OBJ_ALL		:= $(OBJ_AI) $(OBJ_CORE) $(OBJ_INTERFACE) $(OBJ_PARSER) $(OBJ_UTILS)
+OBJ_ALL		:= $(OBJ_AI) $(OBJ_CORE) $(OBJ_FT_PRINTF) $(OBJ_INTERFACE) $(OBJ_PARSER) $(OBJ_UTILS)
 
 # ***************************************************** #
 # *                    Rules                          * #

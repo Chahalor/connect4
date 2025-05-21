@@ -48,12 +48,12 @@ enum e_Core_order
 	core_ord_player,		/* This is the Turn of the player            */
 	core_ord_ai,			/* This is the turn of the AI               */
 	core_ord_display,		/* The Core want an update of the display  */
-	core_ord_start,			/* The game start                         */
-	core_ord_win_AI,		/* The AI won the game                   */
-	core_ord_win_player,	/* The palyer won the game              */
-	core_ord_draw,			/* No one won the game                 */
-	core_ord_stop,			/* The game should stop               */
-	core_ord_wrong_place,	/* The coord targeted does not exist */
+	core_ord_wrong_place,	/* The coord targeted does not exist      */
+	core_ord_start,			/* The game start                        */
+	core_ord_win_AI,		/* The AI won the game                  */
+	core_ord_win_player,	/* The palyer won the game             */
+	core_ord_draw,			/* No one won the game                */
+	core_ord_stop,			/* The game should stop              */
 };
 
 /* ************************************************************************** */

@@ -4,9 +4,6 @@
 
 /* -----| Systems   |----- */
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <time.h>
 
 /* -----| Modules   |----- */
 #include "Core.h"
@@ -42,7 +39,6 @@ int	main(int argc, char const *argv[])
 			return (3);
 		}
 	}
-	srand(time(NULL));
 
 	display_game(CORE);
 
