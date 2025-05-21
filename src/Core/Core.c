@@ -28,7 +28,6 @@ __attribute__((visibility("hidden"), used)) int	_get_grid(
 	char ***grid
 )
 {
-
 	return (_Core(core_req_get_grid, NULL, grid));
 }
 
