@@ -45,7 +45,7 @@ __attribute__((used)) int display_game(
 		else
 		{
 			const int col = ft_atoi(line);
-			Core->add_pawn(col);
+			core_order = Core->add_pawn(col);
 		}
 		free(line);
 		CORE->next_turn();
