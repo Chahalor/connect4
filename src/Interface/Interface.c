@@ -61,7 +61,9 @@ __attribute__((always_inline, used)) static inline int	player_turn(void)
 	{
 		write(1, "\n>> ", 4);
 		line = gnl(0);
-		if (!is_numeric(line))
+		if (!line)
+			continue ;
+		else if (!is_numeric(line))
 		{
 			ft_fprintf(2, RED ERROR RESET "Invalid input: \"%s\"\n", line);
 			free(line);
