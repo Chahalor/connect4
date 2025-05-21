@@ -27,4 +27,6 @@ int	randint(
 		const int max
 );
 
+extern int	ft_atoi(char *str);
+
 #endif /* UTILS_H */
