@@ -13,7 +13,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-/* -----| Librarys |----- */
+/* -----| Libraries |----- */
 #include <ncurses.h>
 
 /* -----| Internal |----- */
@@ -22,6 +22,5 @@
 
 /* -----| Modules  |----- */
 # include "Core.h"
-
 
 #endif /* _INTERFACE_H */
