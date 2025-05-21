@@ -57,7 +57,7 @@ The AI assigns scores to potential moves by analyzing the grid:
 .
 ├── src/                # Game logic, AI, and core functions
 ├── src/main.c          # Entry point
-├── include/            # Header files
+├── global/             # Header for the configuration
 ├── Makefile            # Build instructions
 └── README.md           # Project description
 
