@@ -36,4 +36,9 @@ extern int	is_numeric(
 		const char *const restrict str
 );
 
+extern void	_neutral(\
+	void *restrict const area,
+	const unsigned int size
+);
+
 #endif /* UTILS_H */

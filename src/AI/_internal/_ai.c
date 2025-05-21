@@ -66,7 +66,7 @@ __attribute__((visibility("hidden"), used)) int	_AI(
 		case ai_req_evaluate:
 			return (_evaluate(_ai));
 		case ai_req_play:
-			return (_play(_ai));
+			return (_ai->best_move);
 		case ai_req_destroy:
 			return (_destroy(&_ai));
 		case ai_req_init:

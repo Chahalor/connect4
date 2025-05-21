@@ -62,4 +62,26 @@ inline int	is_numeric(
 	return (1);
 }
 
+__attribute__((always_inline, used))
+//	(-hidden-)
+extern inline void	_neutral(\
+	void *restrict const area,
+	const unsigned int size
+)	// v.1. >>> tag: def->neutral
+{
+	volatile unsigned long long		*restrict	area_64b;
+	volatile unsigned char	*restrict			area_8b;
+	const unsigned int							len_64b = (size >> 3);
+	register unsigned int						i;
+
+	area_64b = (volatile unsigned long long *)area;
+	i = 0;
+	while (i++ != len_64b)
+		*(area_64b++) = 0;
+	i <<= 3;
+	area_8b = (volatile unsigned char *)area + i;
+	while (!((size - i++) >> 31))
+		*(area_8b++) = 0;
+}
+
 #pragma endregion Fonctions

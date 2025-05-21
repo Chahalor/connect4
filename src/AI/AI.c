@@ -20,7 +20,8 @@ __attribute__((visibility("hidden"), used)) int	_Evaluate(void)
 {
 	if (_unlikely(!AI || !CORE))
 		return (-1);
-	return (0);
+	else
+		return (_AI(ai_req_evaluate, NULL));
 }
 
 /** */
@@ -37,6 +38,7 @@ __attribute__((visibility("hidden"), used)) int	_Play(void)
 	while (ord == core_ord_wrong_place)
 	{
 		pos = randint(0, CORE->width - 1);
+		ft_printf(">> AI played at the random column number %d\n", pos);	// rm
 		ord = CORE->add_pawn(pos);
 	}
 	ft_printf(">> AI played at the column number %d\n", pos);
