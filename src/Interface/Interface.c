@@ -57,31 +57,30 @@ __attribute__((always_inline, used)) static inline int	player_turn(void)
 	int		col = 0;
 	int		order = 0;
 
-	write(1, "\n>> ", 4);
-	line = get_next_line(0);
-	if (_unlikely(!line))
-		return (-1);
-	else
+	while (1)
 	{
-		col = ft_atoi(line);
-		free(line);
-		order = CORE->add_pawn(col);
-		while (order == core_ord_wrong_place)
+		write(1, "\n>> ", 4);
+		line = gnl(0);
+		if (!line)
+			continue ;
+		else if (!is_numeric(line))
 		{
-			write(1, "Wrong place, try again\n", 23);
-			write(1, "\n>> ", 4);
-			line = get_next_line(0);
-			if (_unlikely(!line))
-				return (-1);
-			else
-			{
-				col = ft_atoi(line);
-				free(line);
-				order = CORE->add_pawn(col);
-			}
+			ft_fprintf(2, RED ERROR RESET "Invalid input: \"%s\"\n", line);
+			free(line);
 		}
-		return (order);
+		else
+		{
+			col = ft_atoi(line);
+			free(line);
+			order = CORE->add_pawn(col);
+			if (order != core_ord_wrong_place)
+				break ;
+			else
+				ft_fprintf(2, RED ERROR RESET "Invalid column: \"%d\"\n", col);
+
+		}
 	}
+	return (order);
 }
 
 /** */

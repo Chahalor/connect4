@@ -27,6 +27,13 @@ int	randint(
 		const int max
 );
 
-extern int	ft_atoi(char *str);
+extern int	ft_atoi(
+	const char *const restrict str
+);
+
+
+extern int	is_numeric(
+		const char *const restrict str
+);
 
 #endif /* UTILS_H */

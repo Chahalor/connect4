@@ -1,25 +1,5 @@
 #include "Parser.h"
 
-static inline int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-static inline int	is_numeric(const char *const restrict str)
-{
-	int i = 0;
-
-	if (!str[i])
-		return (0);
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 static inline t_config	print_usage(void)
 {
 	ft_fprintf(2, BLUE USAGE RESET "./connect4 <columns> <rows> [interface]\n");

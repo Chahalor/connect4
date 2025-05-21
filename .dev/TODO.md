@@ -7,4 +7,4 @@
  - [X] print the latest status of the interface before quitting (printing after each move)
  - [X] From the subject: Easy to identify positions on the interface
  - [X] print a "you win/you lose" message
- - [ ] increase the qualtiy of the "usage/error" message
+ - [X] increase the qualtiy of the "usage/error" message
